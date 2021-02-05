@@ -1,0 +1,24 @@
+{
+  "name": "@tasksistant-components/tasksistant-canvas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tasksistant-canvas.js",
+  "module": "tasksistant-canvas.js",
+  "scripts": {
+    "serve": "es-dev-server --app-index demo/index.html --node-resolve --watch --open",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit-element": "^2.4.0"
+  },
+  "devDependencies": {
+    "es-dev-server": "^2.0.2"
+  }
+}
+
