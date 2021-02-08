@@ -1,2 +1,8 @@
 tasksistant-canvas {
+  
+}
+
+#component-container {
+  border: solid;
+  display: inline-flex;
 }

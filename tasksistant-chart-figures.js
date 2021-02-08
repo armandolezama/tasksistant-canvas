@@ -155,10 +155,10 @@ const upStripe = (context, width, height, margin) => {
   context.lineTo((width + margin)/2, 0);
   context.lineTo((width - margin)/2, 0);
   context.fill();
-} 
+};
 
 export default new Map([
-  ['circle', circleFunction],
+  ['connector', circleFunction],
   ['terminator', terminatorFunction],
   ['left arrow', leftArrow],
   ['right arrow', rightArrow],

@@ -115,17 +115,17 @@ export class TasksistantCanvas extends LitElement {
   drawFigureComplements(figureComplements) {
     this.drawFigure(this.figure);
     for(const figureComplementKey in figureComplements){
-      if(figureComplementKey !== ''){
+      if(figureComplements[figureComplementKey] !== ''){
         if(figureComplementKey === 'up'){
           this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasWidthPixels, this.canvasEmptyMarginPixels);
         };
-        if(figureComplementKey === 'down'){
+        if(figureComplementKey === 'down' && figureComplements[figureComplementKey] !== ''){
           this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
         };
-        if(figureComplementKey === 'left'){
+        if(figureComplementKey === 'left' && figureComplements[figureComplementKey] !== ''){
           this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
         };
-        if(figureComplementKey === 'right'){
+        if(figureComplementKey === 'right' && figureComplements[figureComplementKey] !== ''){
           this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
         };
       };

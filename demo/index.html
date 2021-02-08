@@ -9,8 +9,50 @@
     import '../tasksistant-canvas';
   </script>
 </head>
-<body>
-  <tasksistant-canvas></tasksistant-canvas>
+<body onload="loadFunctions()">
+  <div id="component-container">
+    <tasksistant-canvas></tasksistant-canvas>
+  </div>
+  <div id="controls-container">
+    <div id="figures">
+      <button class="figure-button" id="connector">Connector</button>
+      <button class="figure-button" id="terminator">Terminator</button>
+      <button disabled class="figure-button" id="decision">Decision</button>
+      <button disabled class="figure-button" id="Process">Process</button>
+    </div>
+    <div id="figure-complements">
+      
+      <h2>Left</h2>
+      <button class="figure-complement-button" id="left-path">Path</button>
+      <button class="figure-complement-button" id="left-arrow">Arrow</button>
+      <button class="figure-complement-button" id="left-delete">Delete</button>
+
+      <h2>Right</h2>
+      <button class="figure-complement-button" id="right-path">Path</button>
+      <button class="figure-complement-button" id="right-arrow">Arrow</button>
+      <button class="figure-complement-button" id="right-delete">Delete</button>
+
+      <h2>Up</h2>
+      <button class="figure-complement-button" id="up-path">Path</button>
+      <button class="figure-complement-button" id="up-arrow">Arrow</button>
+      <button class="figure-complement-button" id="up-delete">Delete</button>
+      
+      <h2>Down</h2>
+      <button class="figure-complement-button" id="down-path">Path</button>
+      <button class="figure-complement-button" id="down-arrow">Arrow</button>
+      <button class="figure-complement-button" id="down-delete">Delete</button>
+    </div>
+
+    <div id="stripes">
+
+      <h2>Stripes</h2>
+      <button id="left-stripe">Left</button>
+      <button id="right-stripe">Right</button>
+      <button id="up-stripe">Up</button>
+      <button id="down_stripe">Down</button>
+    </div>
+
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
