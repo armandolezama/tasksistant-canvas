@@ -13,10 +13,24 @@ export class TasksistantCanvas extends LitElement {
     super();
     this.figure = '';
     this.context = {};
+    this.canvasEmptyMarginPixels = 50;
     this.canvasHeightPixels = 400;
     this.canvasWidthPixels = 400;
     this.setOfFigures = figures;
-  }
+    this.stripes = {...this.directionSetPrototype};
+    this.figureComplements = {
+      up: '',
+      down: '',
+      left: '',
+      right: ''
+    };
+    this.directionSetPrototype = {
+      up: false,
+      down: false,
+      left: false,
+      right: false
+    };
+  };
 
   /**
     * Object describing property-related metadata used by Polymer features
@@ -25,11 +39,15 @@ export class TasksistantCanvas extends LitElement {
     return {
       figure: {type: String},
       context: {type: Object},
+      canvasEmptyMarginPixels: {type: Number},
       canvasHeightPixels: {type: Number},
       canvasWidthPixels: {type: Number},
-      setOfFigures: {type: Array}
+      setOfFigures: {type: Array},
+      stripes: {type: Object},
+      figureComplements: {type: Object},
+      directionSetPrototype: {type: Object}
     };
-  }
+  };
 
   /**
    * @param {string} value
@@ -37,11 +55,38 @@ export class TasksistantCanvas extends LitElement {
   set figure(value) {
     let oldValue = this._figure;
     if(value !== undefined && value !== ''){
-      this.draw(value)
-    }
+      this.drawFigure(value)
+    };
     this._figure = value;
-    this.requestUpdate('myProp', oldValue);
-  } 
+    this.requestUpdate('figure', oldValue);
+  };
+
+  get figure(){ return this._figure};
+
+  /**
+   * @param {string} value
+   */
+  set stripes(value) {
+    let oldValue = this._stripe;
+    if (Object.keys(value).length > 0) {
+      this.drawStripes(value);
+    };
+    this._stripe = value;
+    this.requestUpdate('stripe', oldValue);
+  };
+
+  get stripes(){ return this._stripes};
+
+  set figureComplements(value) {
+    let oldValue = this._figureComplements;
+    if (this.figure !== '') {
+      this.drawFigureComplements(value);
+    };
+    this._figureComplements = value;
+    this.requestUpdate('figureComplements', oldValue);
+  };
+
+  get figureComplements(){ return this._figureComplements};
 
   static get styles() {
     return styles;
@@ -52,14 +97,45 @@ export class TasksistantCanvas extends LitElement {
     this.showError = this.context ? false : true;
   }
 
-  draw(figure){
+  drawFigure(figure){
     this.clearCanvas();
-    this.setOfFigures.get(figure)(this.context, this.canvasWidthPixels, this.canvasHeightPixels);
+    this.setOfFigures.get(figure)(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
   }
+
+  drawStripes(stripes) {
+    this.clearCanvas();
+    this.setOfFigures.get('stripe point')(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
+    for(const stripeKey in stripes){
+      if(stripes[stripeKey]){
+        this.setOfFigures.get(`${stripeKey} stripe`)(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
+      };
+    };
+  };
+
+  drawFigureComplements(figureComplements) {
+    this.drawFigure(this.figure);
+    for(const figureComplementKey in figureComplements){
+      if(figureComplementKey !== ''){
+        if(figureComplementKey === 'up'){
+          this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasWidthPixels, this.canvasEmptyMarginPixels);
+        };
+        if(figureComplementKey === 'down'){
+          this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
+        };
+        if(figureComplementKey === 'left'){
+          this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
+        };
+        if(figureComplementKey === 'right'){
+          this.setOfFigures.get(`${figureComplementKey} ${figureComplements[figureComplementKey]}`)(this.context, this.canvasWidthPixels, this.canvasHeightPixels, this.canvasEmptyMarginPixels);
+        };
+      };
+    };
+  };
 
   clearCanvas() {
     this.context.clearRect(0, 0, this.canvasWidthPixels, this.canvasHeightPixels);
-  }
+  };
+
   render() {
     return html`
     <div id="main-container">
