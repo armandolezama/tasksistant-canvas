@@ -17,7 +17,7 @@ export default css`
     height: var(--tasksistant-canvas-canvas-container-height, 300px);
   }
 
-  #tasksistant-canvas{
+  #tasksistant-canvas {
     width: var(--tasksistant-canvas-tasksistant-canvas-width, 300px);
     height: var(--tasksistant-canvas-tasksistant-canvas-height, 300px);
   }
