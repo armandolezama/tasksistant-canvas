@@ -17,18 +17,17 @@ export class TasksistantCanvas extends LitElement {
     this.canvasHeightPixels = 400;
     this.canvasWidthPixels = 400;
     this.setOfFigures = figures;
-    this.stripes = {...this.directionSetPrototype};
+    this.stripes = {
+      up: false,
+      down: false,
+      left: false,
+      right: false
+    };
     this.figureComplements = {
       up: '',
       down: '',
       left: '',
       right: ''
-    };
-    this.directionSetPrototype = {
-      up: false,
-      down: false,
-      left: false,
-      right: false
     };
   };
 
@@ -44,8 +43,7 @@ export class TasksistantCanvas extends LitElement {
       canvasWidthPixels: {type: Number},
       setOfFigures: {type: Array},
       stripes: {type: Object},
-      figureComplements: {type: Object},
-      directionSetPrototype: {type: Object}
+      figureComplements: {type: Object}
     };
   };
 
