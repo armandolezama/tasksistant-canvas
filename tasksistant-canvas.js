@@ -79,7 +79,7 @@ export class TasksistantCanvas extends LitElement {
 
   set figureComplements(value) {
     let oldValue = this._figureComplements;
-    if ( value !== undefined && this.allowFunctions && this.allowFunctions !== undefined) {
+    if (value !== undefined && this.figure !== '' && this.allowFunctions && this.allowFunctions !== undefined) {
       this.drawFigureComplements(value);
     };
     this._figureComplements = value;
