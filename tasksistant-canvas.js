@@ -29,6 +29,7 @@ export class TasksistantCanvas extends LitElement {
       left: '',
       right: ''
     };
+    this.allowFunctions = false;
   };
 
   /**
@@ -43,7 +44,8 @@ export class TasksistantCanvas extends LitElement {
       canvasWidthPixels: {type: Number},
       setOfFigures: {type: Array},
       stripes: {type: Object},
-      figureComplements: {type: Object}
+      figureComplements: {type: Object},
+      allowFunctions: {type: Boolean}
     };
   };
 
@@ -52,7 +54,7 @@ export class TasksistantCanvas extends LitElement {
    */
   set figure(value) {
     let oldValue = this._figure;
-    if(value !== undefined && value !== ''){
+    if(value !== undefined && value !== ''  && this.allowFunctions && this.allowFunctions !== undefined){
       this.drawFigure(value)
     };
     this._figure = value;
@@ -66,7 +68,7 @@ export class TasksistantCanvas extends LitElement {
    */
   set stripes(value) {
     let oldValue = this._stripe;
-    if (Object.keys(value).length > 0) {
+    if (value !== undefined && this.allowFunctions && this.allowFunctions !== undefined) {
       this.drawStripes(value);
     };
     this._stripe = value;
@@ -77,7 +79,7 @@ export class TasksistantCanvas extends LitElement {
 
   set figureComplements(value) {
     let oldValue = this._figureComplements;
-    if (this.figure !== '') {
+    if ( value !== undefined && this.allowFunctions && this.allowFunctions !== undefined) {
       this.drawFigureComplements(value);
     };
     this._figureComplements = value;
@@ -93,6 +95,7 @@ export class TasksistantCanvas extends LitElement {
   firstUpdated() {
     this.context = this.shadowRoot.getElementById('tasksistant-canvas').getContext('2d');
     this.showError = this.context ? false : true;
+    this.allowFunctions = true;
   }
 
   drawFigure(figure){
