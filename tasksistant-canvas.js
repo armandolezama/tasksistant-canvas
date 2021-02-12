@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit-element';
 import styles from './tasksistant-canvas-styles';
-import figures from './tasksistant-chart-figures';
 
 export class TasksistantCanvas extends LitElement {
 
@@ -16,7 +15,7 @@ export class TasksistantCanvas extends LitElement {
     this.canvasEmptyMarginPixels = 50;
     this.canvasHeightPixels = 400;
     this.canvasWidthPixels = 400;
-    this.setOfFigures = figures;
+    this.setOfFigures = {};
     this.stripes = {
       up: false,
       down: false,
@@ -42,7 +41,7 @@ export class TasksistantCanvas extends LitElement {
       canvasEmptyMarginPixels: {type: Number},
       canvasHeightPixels: {type: Number},
       canvasWidthPixels: {type: Number},
-      setOfFigures: {type: Array},
+      setOfFigures: {type: Object},
       stripes: {type: Object},
       figureComplements: {type: Object},
       allowFunctions: {type: Boolean}
